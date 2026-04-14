@@ -57,7 +57,16 @@
   <div class="custom-panel" style="position: absolute; top: 70px; left: 60px; z-index: 1000; background: rgba(255,255,255,0.95); padding: 12px 18px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; display: flex; flex-direction: column; gap: 10px; min-width: 200px;">
     <strong style="margin-bottom: 5px; color: #111;">Features & Icon Customizer</strong>
     
-    <label style="display: flex; gap: 8px; align-items: center; cursor: pointer;">
+    <div style="display: flex; flex-direction: column; gap: 5px;">
+      <label for="iconSelect" style="font-weight: 600; color: #333;">Select SVG Icon:</label>
+      <select id="iconSelect" style="padding: 4px; border: 1px solid #ccc; border-radius: 4px;">
+        <option value="trans2.svg">Truck (transporteur.svg)</option>
+        <option value="tracteur.svg">Tracteur (tracteur.svg)</option>
+      </select>
+      <small style="font-size: 11px; color: #666;">Note: Must use CSS vars <code>--truck-color</code> & <code>--truck-color-light</code> for coloring</small>
+    </div>
+
+    <label style="display: flex; gap: 8px; align-items: center; cursor: pointer; border-top: 1px solid #eee; padding-top: 10px;">
       <input type="checkbox" id="autoColor" checked> Auto Color Cycle
     </label>
     
@@ -72,8 +81,19 @@
     </div>
     
     <div style="display: flex; flex-direction: column; gap: 5px; margin-top: 5px;">
-      <label for="iconScale" style="font-weight: 600; color: #333;">Icon Scale: <span id="scaleValue">1.0</span>x</label>
+      <label for="iconScale" style="font-weight: 600; color: #333;">Icon Scale: <span id="scaleValue">1.0x (40x65 px)</span></label>
       <input type="range" id="iconScale" min="0.5" max="3.0" step="0.1" value="1.0" style="accent-color: #2563eb;">
+    </div>
+    
+    <div style="display: flex; gap: 10px; margin-top: 5px;">
+      <div style="flex: 1;">
+        <label for="iconWidth" style="font-weight: 600; color: #333; display: block; font-size: 12px;">Width (px)</label>
+        <input type="number" id="iconWidth" value="40" min="10" max="200" style="width: 100%; padding: 4px; border: 1px solid #ccc; border-radius: 4px;">
+      </div>
+      <div style="flex: 1;">
+        <label for="iconHeight" style="font-weight: 600; color: #333; display: block; font-size: 12px;">Height (px)</label>
+        <input type="number" id="iconHeight" value="65" min="10" max="300" style="width: 100%; padding: 4px; border: 1px solid #ccc; border-radius: 4px;">
+      </div>
     </div>
     
     <div style="display: flex; flex-direction: column; gap: 5px; margin-top: 5px;">
@@ -139,49 +159,78 @@
       document.getElementById('speedValue').textContent = speed;
     });
 
-    fetch("./trans2.svg")
-      .then((res) => res.text())
-      .then((data) => {
-        
-        var startPos = (trajectory.length > 0 && trajectory[0].length > 1) ? trajectory[0] : [34.76, 10.76];
-        
-        // create the marker with the SVG icon
-        carMarker = L.marker(startPos, {
-          icon: L.divIcon({
-            className: '',
-            html: '<div id="truck-container" style="width: 40px; height: 65px;">' + data + '</div>',
-            iconSize: [40, 65],
-            iconAnchor: [20, 32.5]
-          }),
-          zIndexOffset: 1000
-        }).addTo(map);
+    function loadSvgIcon(iconName) {
+      fetch("./" + iconName)
+        .then((res) => {
+          if (!res.ok) throw new Error("SVG icon not found: " + iconName);
+          return res.text();
+        })
+        .then((data) => {
+          var startPos = (trajectory.length > 0 && trajectory[0].length > 1) ? trajectory[0] : [34.76, 10.76];
+          
+          let w = parseFloat(document.getElementById('iconWidth').value) || 40;
+          let h = parseFloat(document.getElementById('iconHeight').value) || 65;
+          let scaleX = w / 40;
+          let scaleY = h / 65;
+          
+          let iconHtml = '<div id="truck-container" style="width: 40px; height: 65px; transform: scale(' + scaleX + ', ' + scaleY + '); transform-origin: center center;">' + data + '</div>';
 
-        // Set initial colors
-        var svgElement = document.querySelector("#truck-container svg");
-        if(svgElement) {
-            svgElement.style.setProperty("--truck-color",colors[colorIndex][0] );
-            svgElement.style.setProperty("--truck-color-light", colors[colorIndex][1]);
-        }
+          if (!carMarker) {
+            // create the marker with the SVG icon
+            carMarker = L.marker(startPos, {
+              icon: L.divIcon({
+                className: '',
+                html: iconHtml,
+                iconSize: [40, 65],
+                iconAnchor: [20, 32.5]
+              }),
+              zIndexOffset: 1000
+            }).addTo(map);
 
-      
-        if (trajectory.length >= 2 && trajectory[0].length > 1) {
-          targetRotation = getBearing(trajectory[0], trajectory[1]);
-          currentRotation = targetRotation;
-          setCarRotation(currentRotation);
-        }
+            if (trajectory.length >= 2 && trajectory[0].length > 1) {
+              targetRotation = getBearing(trajectory[0], trajectory[1]);
+              currentRotation = targetRotation;
+              setCarRotation(currentRotation);
+            }
 
-       
-        document.getElementById('playBtn').disabled = false;
-        document.getElementById('playBtn').textContent = '⏸ Pause';
-        isPlaying = true;
-        updateInfo();
-        scheduleFrame();
-      })
-      .catch(err => {
-        console.error("Problème fel chargement mta3 trans2.svg", err);
-        document.getElementById('playBtn').textContent = '❌ Error SVG';
-      });
+            document.getElementById('playBtn').disabled = false;
+            document.getElementById('playBtn').textContent = '⏸ Pause';
+            isPlaying = true;
+            updateInfo();
+            scheduleFrame();
+          } else {
+            // update existing marker
+            carMarker.setIcon(L.divIcon({
+              className: '',
+              html: iconHtml,
+              iconSize: [40, 65],
+              iconAnchor: [20, 32.5]
+            }));
+            setCarRotation(currentRotation);
+          }
 
+          // Apply current colors to the new SVG
+          let svgElement = document.querySelector("#truck-container svg");
+          if(svgElement) {
+              let mainClr = document.getElementById('mainColor').value;
+              let lightClr = document.getElementById('lightColor').value;
+              svgElement.style.setProperty("--truck-color", mainClr);
+              svgElement.style.setProperty("--truck-color-light", lightClr);
+          }
+        })
+        .catch(err => {
+          console.error("Problème fel chargement mta3 " + iconName, err);
+          let btn = document.getElementById('playBtn');
+          if (btn) btn.textContent = '❌ Error SVG';
+        });
+    }
+
+    // Load initial icon
+    loadSvgIcon("transporteur.svg");
+
+    document.getElementById('iconSelect').addEventListener('change', function(e) {
+      loadSvgIcon(e.target.value);
+    });
 
     const colors = [
       ["#5fdd00", "#5fdd00"], // Vert
@@ -235,12 +284,44 @@
     // Icon Scale toggle
     document.getElementById('iconScale').addEventListener('input', function(e) {
       let val = e.target.value;
-      document.getElementById('scaleValue').textContent = parseFloat(val).toFixed(1);
+      let w = Math.round(40 * val);
+      let h = Math.round(65 * val);
+      document.getElementById('scaleValue').textContent = parseFloat(val).toFixed(1) + 'x (' + w + 'x' + h + ' px)';
+      document.getElementById('iconWidth').value = w;
+      document.getElementById('iconHeight').value = h;
+      updateIconSize(w, h);
+    });
+
+    function updateIconSize(w, h) {
       let container = document.getElementById('truck-container');
       if (container) {
-         container.style.transform = `scale(${val})`;
+         let scaleX = w / 40;
+         let scaleY = h / 65;
+         container.style.transform = `scale(${scaleX}, ${scaleY})`;
+         // In case the structure gets replaced by leaflet unexpectedly, 
+         // let the parent know we want this size when redefining the icon wrapper
+         container.style.transformOrigin = 'center center';
       }
+    }
+
+    document.getElementById('iconWidth').addEventListener('input', function(e) {
+      let w = parseFloat(e.target.value) || 40;
+      let h = parseFloat(document.getElementById('iconHeight').value) || 65;
+      updateIconScaleText(w, h);
+      updateIconSize(w, h);
     });
+
+    document.getElementById('iconHeight').addEventListener('input', function(e) {
+      let w = parseFloat(document.getElementById('iconWidth').value) || 40;
+      let h = parseFloat(e.target.value) || 65;
+      updateIconScaleText(w, h);
+      updateIconSize(w, h);
+    });
+
+    function updateIconScaleText(w, h) {
+       let scaleAvg = ((w / 40) + (h / 65)) / 2;
+       document.getElementById('scaleValue').textContent = scaleAvg.toFixed(1) + 'x (' + w + 'x' + h + ' px)';
+    }
 
     // Map Zoom toggle
     document.getElementById('mapZoom').addEventListener('input', function(e) {
