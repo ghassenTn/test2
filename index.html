@@ -54,6 +54,34 @@
     <button onclick="resetAnimation()">↺ Reset</button>
   </div>
 
+  <div class="custom-panel" style="position: absolute; top: 70px; left: 60px; z-index: 1000; background: rgba(255,255,255,0.95); padding: 12px 18px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; display: flex; flex-direction: column; gap: 10px; min-width: 200px;">
+    <strong style="margin-bottom: 5px; color: #111;">Features & Icon Customizer</strong>
+    
+    <label style="display: flex; gap: 8px; align-items: center; cursor: pointer;">
+      <input type="checkbox" id="autoColor" checked> Auto Color Cycle
+    </label>
+    
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <label for="mainColor" style="font-weight: 600; color: #333;">Main Color:</label>
+      <input type="color" id="mainColor" value="#5fdd00" style="cursor: pointer; border: none; background: none; width: 30px; height: 30px;">
+    </div>
+    
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <label for="lightColor" style="font-weight: 600; color: #333;">Light Color:</label>
+      <input type="color" id="lightColor" value="#5fdd00" style="cursor: pointer; border: none; background: none; width: 30px; height: 30px;">
+    </div>
+    
+    <div style="display: flex; flex-direction: column; gap: 5px; margin-top: 5px;">
+      <label for="iconScale" style="font-weight: 600; color: #333;">Icon Scale: <span id="scaleValue">1.0</span>x</label>
+      <input type="range" id="iconScale" min="0.5" max="3.0" step="0.1" value="1.0" style="accent-color: #2563eb;">
+    </div>
+    
+    <div style="display: flex; flex-direction: column; gap: 5px; margin-top: 5px;">
+      <label for="mapZoom" style="font-weight: 600; color: #333;">Map Zoom: <span id="zoomValue">14</span></label>
+      <input type="range" id="mapZoom" min="1" max="19" step="1" value="14" style="accent-color: #dc2626;">
+    </div>
+  </div>
+
   <div class="info-panel">
     <strong>Points:</strong> <span id="totalPoints">–</span> |
     <strong>Current:</strong> <span id="currentPoint">–</span> |
@@ -172,10 +200,61 @@
 
       svgElement.style.setProperty("--truck-color", main);
       svgElement.style.setProperty("--truck-color-light", light);
+      
+      // Update inputs to match auto-cycling
+      document.getElementById('mainColor').value = main;
+      document.getElementById('lightColor').value = light;
     }
 
-    setInterval(changeColor, 3000);
+    let colorInterval = setInterval(changeColor, 3000);
 
+    // Auto Color Cycle toggle
+    document.getElementById('autoColor').addEventListener('change', function(e) {
+      if (e.target.checked) {
+        colorInterval = setInterval(changeColor, 3000);
+      } else {
+        clearInterval(colorInterval);
+      }
+    });
+
+    // Manual Customization properties
+    document.getElementById('mainColor').addEventListener('input', function(e) {
+      document.getElementById('autoColor').checked = false; // Disable auto if set manually
+      clearInterval(colorInterval);
+      let svgElement = document.querySelector("#truck-container svg");
+      if (svgElement) svgElement.style.setProperty("--truck-color", e.target.value);
+    });
+
+    document.getElementById('lightColor').addEventListener('input', function(e) {
+      document.getElementById('autoColor').checked = false; // Disable auto if set manually
+      clearInterval(colorInterval);
+      let svgElement = document.querySelector("#truck-container svg");
+      if (svgElement) svgElement.style.setProperty("--truck-color-light", e.target.value);
+    });
+
+    // Icon Scale toggle
+    document.getElementById('iconScale').addEventListener('input', function(e) {
+      let val = e.target.value;
+      document.getElementById('scaleValue').textContent = parseFloat(val).toFixed(1);
+      let container = document.getElementById('truck-container');
+      if (container) {
+         container.style.transform = `scale(${val})`;
+      }
+    });
+
+    // Map Zoom toggle
+    document.getElementById('mapZoom').addEventListener('input', function(e) {
+      let val = e.target.value;
+      document.getElementById('zoomValue').textContent = val;
+      map.setZoom(val);
+    });
+
+    // Sync zoom input on map interaction
+    map.on('zoomend', function() {
+      let currentZoom = map.getZoom();
+      document.getElementById('mapZoom').value = currentZoom;
+      document.getElementById('zoomValue').textContent = currentZoom;
+    });
 
     function getBearing(a, b) {
       var dLon = (b[1] - a[1]) * Math.PI / 180;
