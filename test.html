@@ -1,0 +1,76 @@
+<div><svg id="truck" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 650" width="100%" height="100%" 
+     style="
+       --truck-color: #146633; 
+       --truck-color-light: #1b8542;
+       transition: --truck-color 0.5s ease, --truck-color-light 0.5s ease;
+     ">
+  <defs>
+    <linearGradient id="boxGradient" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="var(--truck-color)"></stop>
+      <stop offset="50%" stop-color="var(--truck-color-light)"></stop>
+      <stop offset="100%" stop-color="var(--truck-color)"></stop>
+    </linearGradient>
+    
+    <linearGradient id="cabGradient" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#e8e8e8"></stop>
+      <stop offset="15%" stop-color="#ffffff"></stop>
+      <stop offset="85%" stop-color="#ffffff"></stop>
+      <stop offset="100%" stop-color="#e8e8e8"></stop>
+    </linearGradient>
+    <linearGradient id="windshieldGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#111111"></stop>
+      <stop offset="60%" stop-color="#3a3a3a"></stop>
+      <stop offset="100%" stop-color="#111111"></stop>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="5" flood-color="#000000" flood-opacity="0.25"></feDropShadow>
+    </filter>
+    <filter id="lightShadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#000000" flood-opacity="0.15"></feDropShadow>
+    </filter>
+  </defs>
+
+  <g filter="url(#shadow)">
+    <rect x="70" y="240" width="260" height="360" rx="3" fill="#cccccc" stroke="#a0a0a0" stroke-width="3"></rect>
+    <rect x="76" y="246" width="248" height="348" fill="url(#boxGradient)"></rect>
+    
+    <rect x="68" y="238" width="12" height="12" rx="2" fill="#888888"></rect>
+    <rect x="320" y="238" width="12" height="12" rx="2" fill="#888888"></rect>
+    <rect x="68" y="590" width="12" height="12" rx="2" fill="#888888"></rect>
+    <rect x="320" y="590" width="12" height="12" rx="2" fill="#888888"></rect>
+  </g>
+
+  <g filter="url(#lightShadow)">
+    <path d="M 110 145 C 80 145 55 150 45 160 C 40 165 50 170 70 165 L 110 160 Z" fill="#222222"></path>
+    <path d="M 60 155 C 55 158 52 162 55 164 C 58 165 65 161 68 158 Z" fill="#555555"></path> 
+    <path d="M 290 145 C 320 145 345 150 355 160 C 360 165 350 170 330 165 L 290 160 Z" fill="#222222"></path>
+    <path d="M 340 155 C 345 158 348 162 345 164 C 342 165 335 161 332 158 Z" fill="#555555"></path>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="105" y="40" width="190" height="215" rx="45" fill="url(#cabGradient)" stroke="#dcdcdc" stroke-width="1"></rect>
+    <path d="M 125 40 Q 200 25 275 40 L 285 60 Q 200 50 115 60 Z" fill="#2a2a2a"></path>
+    <ellipse cx="200" cy="46" rx="8" ry="4" fill="#666666"></ellipse>
+    <path d="M 115 105 C 150 85 250 85 285 105 L 295 150 C 260 160 140 160 105 150 Z" fill="url(#windshieldGrad)"></path>
+    <path d="M 140 148 L 195 138" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round"></path>
+    <path d="M 205 148 L 260 138" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round"></path>
+    <path d="M 120 110 C 150 95 250 95 280 110 L 270 120 C 230 110 170 110 130 120 Z" fill="#222222" opacity="0.6"></path>
+    <path d="M 106 125 Q 112 165 110 200 L 102 200 Q 100 165 102 125 Z" fill="#222222"></path>
+    <path d="M 294 125 Q 288 165 290 200 L 298 200 Q 300 165 298 125 Z" fill="#222222"></path>
+    <rect x="135" y="170" width="35" height="75" rx="4" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="1"></rect>
+    <rect x="230" y="170" width="35" height="75" rx="4" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="1"></rect>
+    <line x1="170" y1="165" x2="230" y2="165" stroke="#e0e0e0" stroke-width="1.5" stroke-linecap="round"></line>
+    <g filter="url(#lightShadow)">
+      <rect x="272" y="165" width="4" height="65" rx="2" fill="#ffffff" stroke="#e5e5e5" stroke-width="0.5"></rect>
+      <circle cx="274" cy="168" r="3.5" fill="#333333"></circle>
+    </g>
+  </g>
+</svg>
+</div><hr><div><svg id="tourisme" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve" width="100%" height="100%"
+     style="
+       --truck-color: #ff0400; 
+       --truck-color-light: #ff6464;
+       transition: --truck-color 0.5s ease, --truck-color-light 0.5s ease;
+     ">
+<path fill-rule="evenodd" clip-rule="evenodd" fill="var(--truck-color)" d="M46.4482422,18.519043l-3.8935547,1.5913086l-0.65625,2.4150391  l-1.7041016,0.3564453l-1.4033203,1.5727539l1.1796875-2.0786133l1.9658203-0.7490234l0.3730469-1.4042969l-2.7138672,1.1049805  l-2.4726563,4.1196289l-0.9541016,13.4443359c-2.7714844,0.5805664-4.3642578,1.3481445-3.8378906,3.2768555l3.8378906-0.8432617  c1.1054688,13.4453125,0.7119141,21.4033203,0.0556641,33.9667969c1.6103516,5.8613281,7.8652344,6.2167969,13.9697266,6.2167969  c6.0839844-0.0185547,11.984375-0.375,13.59375-6.2167969c-0.6748047-12.5634766-1.0664063-20.5214844,0.0556641-33.9667969  l3.8212891,0.8432617c0.5410156-1.9287109-1.0683594-2.6962891-3.8398438-3.2768555l-0.9355469-13.4443359l-2.4902344-4.1196289  l-2.7158203-1.1049805l0.375,1.4042969l1.9853516,0.7490234l1.1796875,2.0786133l-1.4052734-1.5727539l-1.7226563-0.3564453  l-0.6367188-2.4150391l-3.9130859-1.5913086C53.1894531,18.4814453,46.8232422,18.4814453,46.4482422,18.519043  L46.4482422,18.519043z M50.0058594,77.0146484c-5.4658203-0.1494141-7.9003906,0.3564453-8.1259766-9.3251953  c5.4121094,0,10.8417969,0,16.2539063,0C57.9091797,77.3710938,55.4560547,76.8652344,50.0058594,77.0146484L50.0058594,77.0146484z   M50.0058594,57.1855469l-5.5976563-0.6181641l0.2617188-5.972168l5.3359375-0.8056641l5.3183594,0.8056641l0.2617188,5.972168  L50.0058594,57.1855469z M40.2695313,47.168457l-2.0771484-7.434082c3.6503906-1.5732422,5.7851563-1.7792969,9.9042969-1.5732422  c1.2734375,0,2.5458984,0,3.8007813,0c4.1386719-0.2060547,6.2724609,0,9.90625,1.5732422l-2.0595703,7.434082  C55.9609375,45.3696289,44.0517578,45.3696289,40.2695313,47.168457L40.2695313,47.168457z M62.046875,44.4345703  l-1.5546875,4.0444336l-0.4121094,17.1889648l1.2548828-0.375l0.75-2.6582031  C61.2988281,56.9599609,61.5224609,50.7631836,62.046875,44.4345703L62.046875,44.4345703z M37.9472656,44.4345703  l1.5722656,4.0444336l0.4130859,17.1889648l-1.2734375-0.375l-0.75-2.6582031  C38.7148438,56.9599609,38.4716797,50.7631836,37.9472656,44.4345703L37.9472656,44.4345703z"/></svg>
+</div>

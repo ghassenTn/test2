@@ -1,16 +1,10 @@
-<svg id="tractor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="100%" height="100%"
+<svg id="tractor" xmlns="http://www.w3.org/2000/svg" viewBox="300 130 400 780" width="100%" height="100%"
      style="
        --truck-color: #b39b22; 
        --truck-color-light: #f5de56;
        transition: --truck-color 0.5s ease, --truck-color-light 0.5s ease;
      ">
   <defs>
-    <filter id="drop-shadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="8" dy="12" stdDeviation="10" flood-color="#000" flood-opacity="0.6"/>
-    </filter>
-    <filter id="light-shadow" x="-10%" y="-10%" width="120%" height="120%">
-      <feDropShadow dx="3" dy="5" stdDeviation="5" flood-color="#000" flood-opacity="0.5"/>
-    </filter>
 
     <linearGradient id="yellow-body" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="var(--truck-color)"/>
