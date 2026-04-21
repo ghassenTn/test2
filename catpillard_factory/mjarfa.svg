@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="metalPlate" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#333333" />
+      <stop offset="20%" stop-color="#555555" />
+      <stop offset="80%" stop-color="#444444" />
+      <stop offset="100%" stop-color="#222222" />
+    </linearGradient>
+
+    <linearGradient id="bucketDepth" x1="100%" y1="0%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#0A0A0A" />
+      <stop offset="60%" stop-color="#151515" />
+      <stop offset="100%" stop-color="#2A2A2A" />
+    </linearGradient>
+
+    <linearGradient id="pinMetal" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#CCCCCC" />
+      <stop offset="50%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#888888" />
+    </linearGradient>
+
+    <linearGradient id="yellowPaint" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#EAA800" />
+      <stop offset="50%" stop-color="#FFD700" />
+      <stop offset="100%" stop-color="#B8860B" />
+    </linearGradient>
+
+    <filter id="drop-shadow" x="-20%" y="-20%" width="150%" height="150%">
+      <feDropShadow dx="15" dy="15" stdDeviation="10" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+    
+    <filter id="inner-shadow">
+      <feOffset dx="10" dy="0"/>
+      <feGaussianBlur stdDeviation="10" result="offset-blur"/>
+      <feComposite operator="out" in="SourceGraphic" in2="offset-blur" result="inverse"/>
+      <feFlood flood-color="black" flood-opacity="0.8" result="color"/>
+      <feComposite operator="in" in="color" in2="inverse" result="shadow"/>
+      <feComposite operator="over" in="shadow" in2="SourceGraphic"/>
+    </filter>
+
+    <g id="bolt">
+      <circle cx="0" cy="0" r="4" fill="#111" />
+      <circle cx="0" cy="0" r="2.5" fill="url(#pinMetal)" />
+    </g>
+
+    <g id="tooth">
+      <rect x="0" y="-12" width="40" height="24" rx="3" fill="#222" />
+      <use href="#bolt" x="10" y="-6" />
+      <use href="#bolt" x="10" y="6" />
+      <use href="#bolt" x="25" y="-6" />
+      <use href="#bolt" x="25" y="6" />
+      <path d="M 0,-10 L -35,-6 L -40,-2 L -40,2 L -35,6 L 0,10 Z" fill="#151515" stroke="#333" stroke-width="1"/>
+      <line x1="-5" y1="0" x2="-30" y2="0" stroke="#333" stroke-width="2"/>
+    </g>
+
+    <g id="bracket">
+      <path d="M 0,-15 L 60,-15 C 75,-15 80,-5 80,0 C 80,5 75,15 60,15 L 0,15 Z" fill="url(#yellowPaint)"/>
+      <path d="M 0,-10 L 55,-10 C 65,-10 65,10 55,10 L 0,10 Z" fill="#222"/>
+      <circle cx="50" cy="0" r="14" fill="#111" />
+      <circle cx="50" cy="0" r="10" fill="url(#pinMetal)" />
+      <circle cx="50" cy="0" r="4" fill="#333" />
+    </g>
+  </defs>
+
+  <g transform="translate(300, 100)" filter="url(#drop-shadow)">
+    
+    <use href="#bracket" x="200" y="60" />
+    <use href="#bracket" x="200" y="150" />
+    <use href="#bracket" x="200" y="250" />
+    <use href="#bracket" x="200" y="340" />
+
+    <rect x="-10" y="0" width="220" height="400" rx="8" fill="url(#metalPlate)" />
+
+    <rect x="20" y="20" width="180" height="360" rx="4" fill="url(#bucketDepth)" filter="url(#inner-shadow)" />
+
+    <rect x="-10" y="0" width="220" height="20" fill="#2A2A2A" />
+    <rect x="-10" y="380" width="220" height="20" fill="#2A2A2A" />
+    <rect x="100" y="5" width="80" height="10" fill="#111" rx="2"/>
+    <rect x="100" y="385" width="80" height="10" fill="#111" rx="2"/>
+
+    <rect x="190" y="20" width="30" height="360" fill="#1A1A1A" />
+    <g fill="#050505">
+      <rect x="195" y="30" width="20" height="40" rx="3" />
+      <rect x="195" y="85" width="20" height="40" rx="3" />
+      <rect x="195" y="140" width="20" height="40" rx="3" />
+      <rect x="195" y="195" width="20" height="40" rx="3" />
+      <rect x="195" y="250" width="20" height="40" rx="3" />
+      <rect x="195" y="305" width="20" height="40" rx="3" />
+    </g>
+
+    <rect x="-30" y="0" width="40" height="400" rx="4" fill="#333" />
+    <rect x="-25" y="0" width="35" height="400" fill="#222" />
+    
+    <use href="#tooth" x="-25" y="20" />
+    <use href="#tooth" x="-25" y="65" />
+    <use href="#tooth" x="-25" y="110" />
+    <use href="#tooth" x="-25" y="155" />
+    <use href="#tooth" x="-25" y="200" />
+    <use href="#tooth" x="-25" y="245" />
+    <use href="#tooth" x="-25" y="290" />
+    <use href="#tooth" x="-25" y="335" />
+    <use href="#tooth" x="-25" y="380" />
+
+    <use href="#bolt" x="-10" y="42.5" />
+    <use href="#bolt" x="-10" y="87.5" />
+    <use href="#bolt" x="-10" y="132.5" />
+    <use href="#bolt" x="-10" y="177.5" />
+    <use href="#bolt" x="-10" y="222.5" />
+    <use href="#bolt" x="-10" y="267.5" />
+    <use href="#bolt" x="-10" y="312.5" />
+    <use href="#bolt" x="-10" y="357.5" />
+
+    <rect x="50" y="20" width="10" height="360" fill="#0A0A0A" opacity="0.5"/>
+    <rect x="100" y="20" width="10" height="360" fill="#0A0A0A" opacity="0.5"/>
+    <rect x="150" y="20" width="10" height="360" fill="#0A0A0A" opacity="0.5"/>
+  </g>
+</svg>

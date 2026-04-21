@@ -50,7 +50,7 @@
     <label for="speed">Speed:</label>
     <input type="range" id="speed" min="1" max="100" value="20">
     <span id="speedValue">20</span> m/s
-    <button id="playBtn" onclick="togglePlay()" disabled>⏳ Loading...</button>
+    <button id="playBtn" onclick="togglePlay()" disabled> Loading...</button>
     <button onclick="resetAnimation()">↺ Reset</button>
   </div>
 
@@ -61,22 +61,27 @@
       <label for="iconSelect" style="font-weight: 600; color: #333;">Select SVG Icon:</label>
       <select id="iconSelect" style="padding: 4px; border: 1px solid #ccc; border-radius: 4px;">
         <!-- <option value="transporteur.svg">Transporteur (transporteur.svg)</option> -->
-        <option value="transporteur_cadre.svg">Transporteur</option>
+        <option value="svg/transporteur.svg">Transporteur</option>
         <!-- <option value="truck.svg">Truck 1 (truck.svg)</option> -->
-        <option value="truck_cadre.svg">Truck 1 </option>
+        <option value="svg/truck.svg">Truck 1 </option>
         <!-- <option value="truck2.svg">Truck 2 (truck2.svg)</option> -->
-        <option value="truck2_cadre.svg">Truck 2 </option>
+        <option value="svg/truck2.svg">Truck 2 </option>
         <!-- <option value="truck3.svg">Truck 3 (truck3.svg)</option> -->
-        <option value="truck3_cadre.svg">Truck 3 </option>
-        <option value="tracteur.svg">Tracteur</option>
+        <option value="svg/truck3.svg">Truck 3 </option>
+        <option value="svg/tracteur.svg">Tracteur</option>
          <!-- <option value="tourisme3.svg">Tourisme 3 (tourisme3.svg)</option> -->
-        <option value="tourisme5.svg">Tourisme </option>
+        <option value="svg/car_cabriolet.svg">Tourisme </option>
         <!-- <option value="ambulance.svg">Ambulance (ambulance.svg)</option> -->
-        <option value="ambulance_cadre.svg">Ambulance </option>
+        <option value="svg/ambulance.svg">Ambulance </option>
         <!-- <option value="moto.svg">Moto (moto.svg)</option> -->
-        <option value="moto_cadre.svg">Moto </option>
+        <option value="svg/moto.svg">Moto </option>
+        <option value="svg/taxi.svg">Taxi </option>
+        <option value="svg/taxi.svg">Taxi (Cadre Noir)</option>
+        <option value="svg/trax.svg">Trax</option>
+        <option value="svg/trax_vertical.svg">Trax (Vertical Top View)</option>
+        <option value="svg/catpillard.svg">Catpillard</option>
       </select>
-      <small style="font-size: 11px; color: #666;">Note: Must use CSS vars <code>--truck-color</code> & <code>--truck-color-light</code> for coloring</small>
+      <small style="font-size: 11px; color: #666;">Note: Must use CSS vars <code>--fillColor</code> & <code>--fillColor-light</code> for coloring</small>
     </div>
 
     <label style="display: flex; gap: 8px; align-items: center; cursor: pointer; border-top: 1px solid #eee; padding-top: 10px;">
@@ -239,19 +244,19 @@
           if(svgElement) {
               let mainClr = document.getElementById('mainColor').value;
               let lightClr = document.getElementById('lightColor').value;
-              svgElement.style.setProperty("--truck-color", mainClr);
-              svgElement.style.setProperty("--truck-color-light", lightClr);
+              svgElement.style.setProperty("--fillColor", mainClr);
+              svgElement.style.setProperty("--fillColor-light", lightClr);
           }
         })
         .catch(err => {
           console.error("Problème fel chargement mta3 " + iconName, err);
           let btn = document.getElementById('playBtn');
-          if (btn) btn.textContent = '❌ Error SVG';
+          if (btn) btn.textContent = 'Error SVG';
         });
     }
 
     // Load initial icon
-    loadSvgIcon("transporteur.svg");
+    loadSvgIcon("svg/transporteur.svg");
 
     document.getElementById('iconSelect').addEventListener('change', function(e) {
       loadSvgIcon(e.target.value);
@@ -272,8 +277,8 @@
       colorIndex = (colorIndex + 1) % colors.length;
       const [main, light] = colors[colorIndex];
 
-      svgElement.style.setProperty("--truck-color", main);
-      svgElement.style.setProperty("--truck-color-light", light);
+      svgElement.style.setProperty("--fillColor", main);
+      svgElement.style.setProperty("--fillColor-light", light);
       
       // Update inputs to match auto-cycling
       document.getElementById('mainColor').value = main;
@@ -296,14 +301,14 @@
       document.getElementById('autoColor').checked = false; // Disable auto if set manually
       clearInterval(colorInterval);
       let svgElement = document.querySelector("#truck-container svg");
-      if (svgElement) svgElement.style.setProperty("--truck-color", e.target.value);
+      if (svgElement) svgElement.style.setProperty("--fillColor", e.target.value);
     });
 
     document.getElementById('lightColor').addEventListener('input', function(e) {
       document.getElementById('autoColor').checked = false; // Disable auto if set manually
       clearInterval(colorInterval);
       let svgElement = document.querySelector("#truck-container svg");
-      if (svgElement) svgElement.style.setProperty("--truck-color-light", e.target.value);
+      if (svgElement) svgElement.style.setProperty("--fillColor-light", e.target.value);
     });
 
     // Icon Scale toggle
