@@ -42,7 +42,7 @@
       <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#000000" flood-opacity="0.15"></feDropShadow>
     </filter>
   </defs>
-<g filter="url(#cadre-noir)">
+<g >
 
   <g filter="url(#shadow)">
     <rect x="70" y="240" width="260" height="360" rx="3" fill="#cccccc" stroke="#a0a0a0" stroke-width="3"></rect>

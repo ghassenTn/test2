@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="100 40 400 930" width="100%" height="100%" style="--fillColor: #FFD700; --fillColor-light: #EAA800; --fillColor-dark: #B8860B; transition: --fillColor 0.5s ease, --fillColor-light 0.5s ease, --fillColor-dark 0.5s ease;">
   <defs>
     <linearGradient id="yellowBody" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color: var(--fillColor);" />
-      <stop offset="50%" style="stop-color: var(--fillColor-light);" />
-      <stop offset="100%" style="stop-color: var(--fillColor-dark);" />
+      <stop offset="0%" stop-color=" var(--fillColor)" />
+      <stop offset="50%" stop-color=" var(--fillColor-light)" />
+      <stop offset="100%" stop-color=" var(--fillColor-dark)" />
     </linearGradient>
     
     <linearGradient id="metalCylinder" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -195,7 +195,7 @@
     <circle cx="445" cy="340" r="5" fill="#FF3333"/>
     
     <rect x="402" y="292" width="16" height="16" rx="8" fill="#FF8C00" filter="url(#light-shadow)"/>
-    <circle cx="410" cy="300" r="5" style="fill: var(--fillColor);"/>
+    <circle cx="410" cy="300" r="5" fill=" var(--fillColor)"/>
     <circle cx="406" cy="296" r="2" fill="#FFF" opacity="0.6"/>
   </g>
 </svg>

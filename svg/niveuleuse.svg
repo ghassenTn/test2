@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="90 30 420 840" style="--fillColor: #FFD700; transition: --fillColor 0.5s ease;" width="100%" height="100%">
+  <defs>
+    <linearGradient id="yellowBody" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFD700" />
+      <stop offset="50%" stop-color="#EAA800" />
+      <stop offset="100%" stop-color="#B8860B" />
+    </linearGradient>
+    
+    <linearGradient id="metalCylinder" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#EEEEEE" />
+      <stop offset="50%" stop-color="#AAAAAA" />
+      <stop offset="100%" stop-color="#555555" />
+    </linearGradient>
+
+    <linearGradient id="steelBlade" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#555555" />
+      <stop offset="30%" stop-color="#999999" />
+      <stop offset="70%" stop-color="#444444" />
+      <stop offset="100%" stop-color="#222222" />
+    </linearGradient>
+
+    <linearGradient id="verticalTireBulge" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#050505" />
+      <stop offset="20%" stop-color="#252525" />
+      <stop offset="80%" stop-color="#252525" />
+      <stop offset="100%" stop-color="#050505" />
+    </linearGradient>
+
+    <filter id="drop-shadow" x="-20%" y="-20%" width="150%" height="150%">
+      <feDropShadow dx="12" dy="12" stdDeviation="8" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+
+    <filter id="light-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="4" dy="4" stdDeviation="4" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+
+    <g id="verticalTire">
+      <rect x="0" y="0" width="60" height="130" rx="12" fill="url(#verticalTireBulge)" filter="url(#drop-shadow)"/>
+      <g stroke="#0A0A0A" stroke-width="6" stroke-linecap="round">
+        <line x1="4" y1="15" x2="28" y2="25" /> <line x1="56" y1="15" x2="32" y2="25" />
+        <line x1="4" y1="35" x2="28" y2="45" /> <line x1="56" y1="35" x2="32" y2="45" />
+        <line x1="4" y1="55" x2="28" y2="65" /> <line x1="56" y1="55" x2="32" y2="65" />
+        <line x1="4" y1="75" x2="28" y2="85" /> <line x1="56" y1="75" x2="32" y2="85" />
+        <line x1="4" y1="95" x2="28" y2="105" /> <line x1="56" y1="95" x2="32" y2="105" />
+        <line x1="4" y1="115" x2="28" y2="125" /> <line x1="56" y1="115" x2="32" y2="125" />
+      </g>
+      <rect x="0" y="0" width="60" height="130" rx="12" fill="none" stroke="#000000" stroke-width="2"/>
+    </g>
+
+    <g id="pin">
+      <circle cx="0" cy="0" r="5" fill="#111" />
+      <circle cx="0" cy="0" r="2.5" fill="#CCC" />
+    </g>
+  </defs>
+
+  <g id="motor_grader">
+    
+    <rect x="250" y="40" width="100" height="40" rx="4" fill="#222" filter="url(#drop-shadow)"/>
+    <rect x="260" y="45" width="80" height="20" fill="#333"/>
+    
+    <rect x="150" y="100" width="300" height="24" rx="4" fill="#222" filter="url(#drop-shadow)"/>
+    <line x1="160" y1="135" x2="440" y2="135" stroke="url(#metalCylinder)" stroke-width="8" stroke-linecap="round"/>
+    <rect x="220" y="130" width="160" height="10" fill="#111" rx="2"/>
+    
+    <use href="#verticalTire" x="110" y="50" />
+    <use href="#verticalTire" x="430" y="50" />
+
+
+    <rect x="160" y="580" width="30" height="280" rx="10" fill="#1A1A1A" filter="url(#drop-shadow)"/>
+    <rect x="410" y="580" width="30" height="280" rx="10" fill="#1A1A1A" filter="url(#drop-shadow)"/>
+    
+    <rect x="180" y="620" width="240" height="30" fill="#111" />
+    <rect x="180" y="780" width="240" height="30" fill="#111" />
+
+    <use href="#verticalTire" x="120" y="570" /> <use href="#verticalTire" x="120" y="730" /> <use href="#verticalTire" x="420" y="570" /> <use href="#verticalTire" x="420" y="730" /> <rect x="230" y="550" width="140" height="300" rx="8" fill="var(--fillColor, #FFD700)" filter="url(#drop-shadow)"/>
+    
+    <path d="M 240,650 L 360,650 L 350,840 L 250,840 Z" fill="var(--fillColor, #FFD700)" filter="url(#light-shadow)"/>
+    <g fill="#111">
+      <rect x="260" y="670" width="80" height="8" rx="2"/>
+      <rect x="260" y="690" width="80" height="8" rx="2"/>
+      <rect x="260" y="710" width="80" height="8" rx="2"/>
+      <rect x="260" y="730" width="80" height="8" rx="2"/>
+      <rect x="260" y="750" width="80" height="8" rx="2"/>
+    </g>
+    <circle cx="255" cy="640" r="12" fill="#222" filter="url(#light-shadow)"/>
+    <circle cx="255" cy="640" r="6" fill="#000"/>
+    <rect x="330" y="630" width="20" height="20" rx="4" fill="#333"/>
+
+    <circle cx="300" cy="530" r="30" fill="#151515" filter="url(#drop-shadow)"/>
+    <use href="#pin" x="300" y="530" transform="scale(1.5) translate(-100, -353.3)"/>
+    
+    <line x1="250" y1="560" x2="270" y2="480" stroke="#111" stroke-width="14" stroke-linecap="round"/>
+    <line x1="270" y1="480" x2="285" y2="440" stroke="url(#metalCylinder)" stroke-width="6"/>
+    
+    <line x1="350" y1="560" x2="330" y2="480" stroke="#111" stroke-width="14" stroke-linecap="round"/>
+    <line x1="330" y1="480" x2="315" y2="440" stroke="url(#metalCylinder)" stroke-width="6"/>
+
+    <path d="M 280,530 L 280,300 C 280,150 285,120 285,100 L 315,100 C 315,120 320,150 320,300 L 320,530 Z" fill="var(--fillColor, #FFD700)" filter="url(#drop-shadow)"/>
+
+
+    <g id="bladeSystem">
+      <path d="M 300,150 L 220,380 L 380,380 Z" fill="none" stroke="var(--fillColor, #FFD700)" stroke-width="20" stroke-linejoin="round" filter="url(#light-shadow)"/>
+      
+      <circle cx="300" cy="380" r="85" fill="#1A1A1A" filter="url(#drop-shadow)"/>
+      <circle cx="300" cy="380" r="70" fill="none" stroke="#333" stroke-width="15"/>
+      <circle cx="300" cy="380" r="60" fill="none" stroke="#111" stroke-width="6" stroke-dasharray="4 4"/>
+      
+      <circle cx="300" cy="295" r="15" fill="#222"/>
+      <circle cx="300" cy="295" r="6" fill="url(#pinMetal)"/>
+
+      <line x1="280" y1="300" x2="210" y2="380" stroke="#111" stroke-width="14" stroke-linecap="round"/>
+      <line x1="210" y1="380" x2="190" y2="400" stroke="url(#metalCylinder)" stroke-width="6"/>
+      <line x1="320" y1="300" x2="390" y2="380" stroke="#111" stroke-width="14" stroke-linecap="round"/>
+      <line x1="390" y1="380" x2="410" y2="400" stroke="url(#metalCylinder)" stroke-width="6"/>
+
+      <g transform="translate(300, 380) rotate(-30) translate(-300, -380)">
+        <rect x="130" y="370" width="340" height="25" rx="5" fill="#222" filter="url(#drop-shadow)"/>
+        <rect x="120" y="380" width="360" height="20" rx="3" fill="url(#steelBlade)"/>
+        <rect x="120" y="395" width="360" height="8" fill="#111"/>
+        
+        <use href="#pin" x="140" y="390" /> <use href="#pin" x="180" y="390" />
+        <use href="#pin" x="220" y="390" /> <use href="#pin" x="260" y="390" />
+        <use href="#pin" x="300" y="390" /> <use href="#pin" x="340" y="390" />
+        <use href="#pin" x="380" y="390" /> <use href="#pin" x="420" y="390" />
+        <use href="#pin" x="460" y="390" />
+      </g>
+    </g>
+
+
+    <polygon points="260,540 340,540 350,600 330,640 270,640 250,600" fill="#222" filter="url(#drop-shadow)"/>
+    
+    <polygon points="265,545 335,545 343,598 325,635 275,635 257,598" fill="#4A90E2" opacity="0.5"/>
+    <polygon points="265,545 300,545 280,635 275,635" fill="#FFFFFF" opacity="0.2"/> <polygon points="265,545 335,545 343,598 325,635 275,635 257,598" fill="none" stroke="#111" stroke-width="4"/>
+
+    <rect x="285" y="580" width="30" height="40" rx="4" fill="#111"/>
+    <path d="M 285,570 A 15 15 0 1 1 315,570" fill="none" stroke="#000" stroke-width="3"/>
+    
+    <polygon points="265,545 335,545 343,598 325,635 275,635 257,598" fill="#2A2A2A" filter="url(#light-shadow)" transform="scale(0.85) translate(53, 105)"/>
+    
+    <circle cx="270" cy="550" r="4" fill="#FFF" filter="url(#light-shadow)"/>
+    <circle cx="330" cy="550" r="4" fill="#FFF" filter="url(#light-shadow)"/>
+    <circle cx="280" cy="630" r="4" fill="#FF3333"/>
+    <circle cx="320" cy="630" r="4" fill="#FF3333"/>
+
+    <rect x="292" y="555" width="16" height="16" rx="8" fill="#FF8C00" filter="url(#light-shadow)"/>
+    <circle cx="300" cy="563" r="5" fill="var(--fillColor, #FFD700)"/>
+    <circle cx="297" cy="560" r="2" fill="#FFF" opacity="0.6"/>
+
+  </g>
+</svg>
